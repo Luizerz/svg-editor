@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { CanvasComponent } from './components/canvas/canvas.component';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [ToolbarComponent, CanvasComponent],
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  title = 'svg-editor';
-}
+export class AppComponent {}

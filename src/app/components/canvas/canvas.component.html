@@ -1,0 +1,18 @@
+<svg width="800" height="600" (click)="onCanvasClick($event)" (mousemove)="onMouseMove($event)">
+    <ng-container *ngFor="let shape of shapes">
+        <rect *ngIf="shape.type === 'rectangle'" [attr.x]="shape.x" [attr.y]="shape.y" [attr.width]="shape.width"
+            [attr.height]="shape.height" [attr.rx]="shape.cornerRadius" [attr.fill]="shape.fill"
+            [attr.stroke]="shape.stroke" [attr.stroke-width]="shape.strokeWidth" />
+        <polygon *ngIf="shape.type === 'star'" [attr.points]="generateStarPoints(shape)" [attr.fill]="shape.fill"
+            [attr.stroke]="shape.stroke" [attr.stroke-width]="shape.strokeWidth" />
+    </ng-container>
+
+    <ng-container *ngIf="previewShape as shape">
+        <rect *ngIf="shape.type === 'rectangle'" [attr.x]="shape.x" [attr.y]="shape.y" [attr.width]="shape.width"
+            [attr.height]="shape.height" [attr.rx]="shape.cornerRadius" fill="lightblue" stroke="gray"
+            stroke-dasharray="4" pointer-events="none" />
+
+        <polygon *ngIf="shape.type === 'star'" [attr.points]="generateStarPoints(shape)" fill="gold" stroke="gray"
+            stroke-dasharray="4" pointer-events="none" />
+    </ng-container>
+</svg>
