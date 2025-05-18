@@ -21,13 +21,18 @@ export class ShapesService {
 
   addShape(shape: Shape) {
     const current = this.shapesSubject.value;
-    this.shapesSubject.next([...current, { ...shape, id: uuid() }]);
+    this.shapesSubject.next([...current, { ...shape }]);
   }
 
   updateShape(updated: Shape) {
     const updatedShapes = this.shapesSubject.value.map(shape =>
       shape.id === updated.id ? updated : shape
     );
+    this.shapesSubject.next(updatedShapes);
+  }
+
+  deleteShape(id: string) {
+    const updatedShapes = this.shapesSubject.value.filter(shape => shape.id !== id);
     this.shapesSubject.next(updatedShapes);
   }
 }

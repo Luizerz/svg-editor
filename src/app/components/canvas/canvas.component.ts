@@ -3,19 +3,23 @@ import { Component } from '@angular/core';
 import { ShapesService } from '../../services/shape.service';
 import { Shape, StarShape } from '../../models/shape.model';
 import { CommonModule } from '@angular/common';
+import { EditingToolbarComponent } from '../editing-toolbar/editing-toolbar.component';
 
 @Component({
   selector: 'app-canvas',
   standalone: true,
   templateUrl: './canvas.component.html',
   styleUrls: ['./canvas.component.css'],
-  imports: [CommonModule],
+  imports: [CommonModule, EditingToolbarComponent],
 })
 export class CanvasComponent {
   previewShape: Shape | null = null;
   shapes: Shape[] = [];
+  selectedShape: Shape | null = null;
   mouseX: number = 0;
   mouseY: number = 0;
+  selectedShapeX: number = 0;
+  selectedShapeY: number = 0;
 
   constructor(private shapeService: ShapesService) {
     this.shapeService.shapes$.subscribe(s => this.shapes = s);
@@ -35,43 +39,60 @@ export class CanvasComponent {
     this.mouseX = cursor.x;
     this.mouseY = cursor.y;
 
+
     if (this.previewShape.type === 'rectangle') {
       this.previewShape = {
-        id: 'preview',
-        type: 'rectangle',
+        ...this.previewShape,
         x: cursor.x,
         y: cursor.y,
-        width: 100,
-        height: 60,
-        cornerRadius: 10,
-        fill: 'lightblue',
-        stroke: 'black',
-        strokeWidth: 2,
+
       };
     } else if (this.previewShape.type === 'star') {
       this.previewShape = {
-        id: 'preview',
-        type: 'star',
+        ...this.previewShape,
         x: cursor.x,
         y: cursor.y,
-        points: 5,
-        outerRadius: 40,
-        innerRadius: 20,
-        fill: 'gold',
-        stroke: 'black',
-        strokeWidth: 2
+
       };
     }
   }
 
   onCanvasClick(event: MouseEvent) {
     if (!this.previewShape) return;
-
-    const newShape = { ...this.previewShape, id: crypto.randomUUID() };
+    const newShape = { ...this.previewShape };
+    this.onShapeClick(event, newShape);
     this.shapeService.addShape(newShape);
-
     this.previewShape = null;
     this.shapeService.addPreviewShape(null);
+  }
+
+  onShapeClick(event: MouseEvent,shape: Shape) {
+    if (this.selectedShape?.id === shape.id) {
+
+      this.selectedShape = null;
+      return;
+    }
+    
+    this.selectedShapeX = event.pageX;
+    this.selectedShapeY = event.pageY;
+    this.selectedShape = shape;
+  }
+
+  onDeleteShape() {
+    if (!this.selectedShape) return;
+    this.shapeService.deleteShape(this.selectedShape.id);
+    this.selectedShape = null;
+  }
+
+  onResizeShape() {
+    if (!this.selectedShape) return;
+    if (this.selectedShape.type === 'rectangle') {
+      this.selectedShape.width += 20;
+      this.selectedShape.height += 20;
+    } else if (this.selectedShape.type === 'star') {
+      this.selectedShape.outerRadius += 10;
+      this.selectedShape.innerRadius += 5;
+    }
   }
 
 
@@ -89,6 +110,4 @@ export class CanvasComponent {
     }
     return coords.join(' ');
   }
-
-
 }

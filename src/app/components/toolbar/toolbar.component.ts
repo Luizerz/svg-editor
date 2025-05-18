@@ -20,11 +20,11 @@ export class ToolbarComponent {
         x: 100,
         y: 100,
         width: 100,
-        height: 80,
+        height: 60,
         cornerRadius: 0,
-        fill: '#88f',
-        stroke: '#000',
-        strokeWidth: 1,
+        fill: 'lightblue',
+        stroke: 'black',
+        strokeWidth: 2,
       }
     );
   }
@@ -38,9 +38,9 @@ export class ToolbarComponent {
       points: 5,
       outerRadius: 50,
       innerRadius: 25,
-      fill: '#fc0',
-      stroke: '#000',
-      strokeWidth: 1,
+      fill: 'gold',
+      stroke: 'black',
+      strokeWidth: 2,
     });
   }
 }

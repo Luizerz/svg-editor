@@ -1,0 +1,46 @@
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:active {
+  transform: scale(0.97);
+  background-color: #004a99;
+}
+
+/* Suporte a tema escuro */
+@media (prefers-color-scheme: dark) {
+  .controls {
+    background-color: #1e1e1e;
+    border-color: #333;
+  }
+
+  button {
+    background-color: #3a7bd5;
+  }
+
+  button:hover {
+    background-color: #2f64b2;
+  }
+}

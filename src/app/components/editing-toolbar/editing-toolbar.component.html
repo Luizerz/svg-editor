@@ -1,0 +1,4 @@
+<div class="toolbar" *ngIf="selectedShape" [ngStyle]="{ top: this.mouseY + 'px', left: this.mouseX  + 'px' }">
+    <button (click)="onResize()">Resize</button>
+    <button (click)="onDelete()">Delete</button>
+</div>

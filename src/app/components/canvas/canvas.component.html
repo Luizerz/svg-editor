@@ -1,18 +1,23 @@
-<svg width="800" height="600" (click)="onCanvasClick($event)" (mousemove)="onMouseMove($event)">
+<svg width="1000" height="720" (click)="onCanvasClick($event)" (mousemove)="onMouseMove($event)" class="canvas-board">
     <ng-container *ngFor="let shape of shapes">
         <rect *ngIf="shape.type === 'rectangle'" [attr.x]="shape.x" [attr.y]="shape.y" [attr.width]="shape.width"
             [attr.height]="shape.height" [attr.rx]="shape.cornerRadius" [attr.fill]="shape.fill"
-            [attr.stroke]="shape.stroke" [attr.stroke-width]="shape.strokeWidth" />
+            [attr.stroke]="shape.stroke" [attr.stroke-width]="shape.strokeWidth" (click)="onShapeClick($event,shape)" />
         <polygon *ngIf="shape.type === 'star'" [attr.points]="generateStarPoints(shape)" [attr.fill]="shape.fill"
-            [attr.stroke]="shape.stroke" [attr.stroke-width]="shape.strokeWidth" />
+            [attr.stroke]="shape.stroke" [attr.stroke-width]="shape.strokeWidth" (click)="onShapeClick($event,shape)" />
     </ng-container>
 
     <ng-container *ngIf="previewShape as shape">
         <rect *ngIf="shape.type === 'rectangle'" [attr.x]="shape.x" [attr.y]="shape.y" [attr.width]="shape.width"
-            [attr.height]="shape.height" [attr.rx]="shape.cornerRadius" fill="lightblue" stroke="gray"
-            stroke-dasharray="4" pointer-events="none" />
+            [attr.height]="shape.height" [attr.rx]="shape.cornerRadius" [attr.fill]="shape.fill"
+            [attr.stroke]="shape.stroke" stroke-dasharray="4" pointer-events="none" />
 
-        <polygon *ngIf="shape.type === 'star'" [attr.points]="generateStarPoints(shape)" fill="gold" stroke="gray"
-            stroke-dasharray="4" pointer-events="none" />
+        <polygon *ngIf="shape.type === 'star'" [attr.points]="generateStarPoints(shape)" [attr.fill]="shape.fill"
+            [attr.stroke]="shape.stroke" stroke-dasharray="4" pointer-events="none" />
     </ng-container>
+
+
 </svg>
+
+<app-editing-toolbar [selectedShape]="this.selectedShape" [mouseX]="this.selectedShapeX" [mouseY]="selectedShapeY" (resize)="this.onResizeShape()" (delete)="this.onDeleteShape()">
+</app-editing-toolbar>
