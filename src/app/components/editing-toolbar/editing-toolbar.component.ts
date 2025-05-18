@@ -16,11 +16,15 @@ export class EditingToolbarComponent {
   @Input() mouseY: number = 0;
   @Output() resize = new EventEmitter<void>();
   @Output() delete = new EventEmitter<void>();
+  @Output() move = new EventEmitter<void>();
 
   onResize() {
     this.resize.emit();
   }
   onDelete() {
     this.delete.emit();
+  }
+  onMove() {
+    this.move.emit();
   }
 }

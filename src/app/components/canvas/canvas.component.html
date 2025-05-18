@@ -19,5 +19,5 @@
 
 </svg>
 
-<app-editing-toolbar [selectedShape]="this.selectedShape" [mouseX]="this.selectedShapeX" [mouseY]="selectedShapeY" (resize)="this.onResizeShape()" (delete)="this.onDeleteShape()">
+<app-editing-toolbar [selectedShape]="this.selectedShape" [mouseX]="this.selectedShapeX" [mouseY]="selectedShapeY" (move)="this.onMoveShape()" (resize)="this.onResizeShape()" (delete)="this.onDeleteShape()">
 </app-editing-toolbar>

@@ -26,7 +26,6 @@ export class ShapesService {
 
   resizeShape(id: string, width: number, height: number) {
     const shape = this.shapesSubject.value.find(s => s.id === id);
-
     this.shapesSubject.value.filter(s => s.id !== id);
     if (shape) {
       if (shape.type === 'rectangle') {

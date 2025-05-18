@@ -85,9 +85,16 @@ export class CanvasComponent {
   }
 
   onResizeShape() {
-    console.log('Resizing shape', this.selectedShape);
     if (!this.selectedShape) return;
     this.shapeService.resizeShape(this.selectedShape.id, 10, 5);
+  }
+
+  onMoveShape() {
+    if (!this.selectedShape) return;
+    this.previewShape = { ...this.selectedShape };
+    this.shapeService.addPreviewShape(this.previewShape);
+    this.shapeService.deleteShape(this.selectedShape.id);
+    this.selectedShape = null;
   }
 
   generateStarPoints(shape: StarShape): string {
