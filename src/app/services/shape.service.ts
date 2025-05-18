@@ -24,12 +24,23 @@ export class ShapesService {
     this.shapesSubject.next([...current, { ...shape }]);
   }
 
-  updateShape(updated: Shape) {
-    const updatedShapes = this.shapesSubject.value.map(shape =>
-      shape.id === updated.id ? updated : shape
-    );
-    this.shapesSubject.next(updatedShapes);
+  resizeShape(id: string, width: number, height: number) {
+    const shape = this.shapesSubject.value.find(s => s.id === id);
+
+    this.shapesSubject.value.filter(s => s.id !== id);
+    if (shape) {
+      if (shape.type === 'rectangle') {
+        const updatedShape = { ...shape, width: shape.width + width, height: shape.height + height };
+        const updatedShapes = this.shapesSubject.value.map(s => s.id === id ? updatedShape : s);
+        this.shapesSubject.next(updatedShapes);
+      } else {
+        const updatedShape = { ...shape, outerRadius: shape.outerRadius + width, innerRadius: shape.innerRadius + height };
+        const updatedShapes = this.shapesSubject.value.map(s => s.id === id ? updatedShape : s);
+        this.shapesSubject.next(updatedShapes);
+      }
+    }
   }
+
 
   deleteShape(id: string) {
     const updatedShapes = this.shapesSubject.value.filter(shape => shape.id !== id);

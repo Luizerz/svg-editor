@@ -66,13 +66,13 @@ export class CanvasComponent {
     this.shapeService.addPreviewShape(null);
   }
 
-  onShapeClick(event: MouseEvent,shape: Shape) {
+  onShapeClick(event: MouseEvent, shape: Shape) {
     if (this.selectedShape?.id === shape.id) {
 
       this.selectedShape = null;
       return;
     }
-    
+
     this.selectedShapeX = event.pageX;
     this.selectedShapeY = event.pageY;
     this.selectedShape = shape;
@@ -85,16 +85,10 @@ export class CanvasComponent {
   }
 
   onResizeShape() {
+    console.log('Resizing shape', this.selectedShape);
     if (!this.selectedShape) return;
-    if (this.selectedShape.type === 'rectangle') {
-      this.selectedShape.width += 20;
-      this.selectedShape.height += 20;
-    } else if (this.selectedShape.type === 'star') {
-      this.selectedShape.outerRadius += 10;
-      this.selectedShape.innerRadius += 5;
-    }
+    this.shapeService.resizeShape(this.selectedShape.id, 10, 5);
   }
-
 
   generateStarPoints(shape: StarShape): string {
     const { x, y, points, outerRadius, innerRadius } = shape;
