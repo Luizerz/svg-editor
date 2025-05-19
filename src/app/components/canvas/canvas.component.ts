@@ -69,6 +69,8 @@ export class CanvasComponent {
 
   onShapeClick(event: MouseEvent, shape: Shape) {
     if (this.selectedShape?.id === shape.id) {
+      this.selectedShape.stroke = 'black';
+      this.selectedShape.strokeOpacity = 1;
       this.selectedShape = null;
       return;
     }
@@ -76,6 +78,7 @@ export class CanvasComponent {
     this.selectedShapeX = event.pageX;
     this.selectedShapeY = event.pageY;
     this.selectedShape = shape;
+    this.selectedShape.strokeOpacity = 0.5;
   }
 
   onDeleteShape() {

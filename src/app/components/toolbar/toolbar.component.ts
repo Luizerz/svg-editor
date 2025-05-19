@@ -25,6 +25,7 @@ export class ToolbarComponent {
         fill: 'lightblue',
         stroke: 'black',
         strokeWidth: 2,
+        strokeOpacity: 1,
       }
     );
   }
@@ -41,6 +42,7 @@ export class ToolbarComponent {
       fill: 'gold',
       stroke: 'black',
       strokeWidth: 2,
+      strokeOpacity: 1,
     });
   }
 }

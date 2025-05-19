@@ -8,6 +8,7 @@ export interface BaseShape {
   fill: string;
   stroke: string;
   strokeWidth: number;
+  strokeOpacity: number;
 }
 
 export interface RectangleShape extends BaseShape {
