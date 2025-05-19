@@ -25,8 +25,7 @@ export class ShapesService {
   }
 
   resizeShape(id: string, value: number) {
-    console.log('resizing shape', id, value);
-    const shape = this.shapesSubject.value.find(s => s.id === id);
+    const shape = this.getShapeById(id)
 
     if (shape) {
       if (shape.type === 'rectangle') {
@@ -34,8 +33,15 @@ export class ShapesService {
         shape.height = 60 * value;
       } else {
         shape.outerRadius = 50 * value;
-        shape.innerRadius = 25 * value;
+        shape.innerRadius = 35 * value;
       }
+    }
+  }
+
+  changeStarPoints(id: string, value: number) {
+    const shape = this.getShapeById(id)
+    if(shape?.type == 'star') {
+      shape.points = value
     }
   }
 

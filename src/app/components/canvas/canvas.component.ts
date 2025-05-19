@@ -97,6 +97,11 @@ export class CanvasComponent {
 
   }
 
+  onStarPointsChange(value: number) {
+    if (!this.selectedShape) return;
+    this.shapeService.changeStarPoints(this.selectedShape.id, value )
+  }
+
   onMoveShape() {
     if (!this.selectedShape) return;
     this.previewShape = { ...this.selectedShape };

@@ -1,6 +1,7 @@
 .toolbar {
   position: absolute;
-  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  /* background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%); */
+  background-color: hsla(0, 0%, 50%, 0.85);
   border: 1px solid #ccc;
   padding: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);

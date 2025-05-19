@@ -5,10 +5,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-editing-toolbar',
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatSliderModule, FormsModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatSliderModule, FormsModule, MatInputModule],
   templateUrl: './editing-toolbar.component.html',
   standalone: true,
   styleUrl: './editing-toolbar.component.css'
@@ -21,7 +22,9 @@ export class EditingToolbarComponent {
   @Output() resize = new EventEmitter<number>();
   @Output() delete = new EventEmitter<void>();
   @Output() move = new EventEmitter<void>();
+  @Output() starPoints = new EventEmitter<number>();
   value = 1;
+  points = 3;
 
   onResize() {
     this.resize.emit(this.value);
@@ -31,5 +34,18 @@ export class EditingToolbarComponent {
   }
   onMove() {
     this.move.emit();
+  }
+
+  onStarPointsDown() {
+    this.points -= 1
+    if (this.points <= 3) {
+      this.points = 3
+      this.starPoints.emit(this.points)
+    }
+    this.starPoints.emit(this.points)
+  }
+  onStarPointsRaise() {
+    this.points += 1
+    this.starPoints.emit(this.points)
   }
 }
