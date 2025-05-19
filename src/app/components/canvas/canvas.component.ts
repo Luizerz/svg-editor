@@ -100,19 +100,7 @@ export class CanvasComponent {
     this.shapeService.deleteShape(this.selectedShape.id);
     this.selectedShape = null;
   }
-
   canvasGenerateStarPoints(shape: StarShape): string {
-    const { x, y, points, outerRadius, innerRadius } = shape;
-    const step = Math.PI / points;
-    const coords: string[] = [];
-
-    for (let i = 0; i < 2 * points; i++) {
-      const radius = i % 2 === 0 ? outerRadius : innerRadius;
-      const angle = i * step;
-      const px = x + radius * Math.cos(angle);
-      const py = y + radius * Math.sin(angle);
-      coords.push(`${px},${py}`);
-    }
-    return coords.join(' ');
+    return this.shapeService.generateStarPoints(shape)
   }
 }

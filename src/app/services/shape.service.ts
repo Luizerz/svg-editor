@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Shape, ShapeType } from '../models/shape.model';
+import { Shape, ShapeType, StarShape } from '../models/shape.model';
 import { v4 as uuid } from 'uuid';
 
 @Injectable({ providedIn: 'root' })
@@ -37,6 +37,21 @@ export class ShapesService {
         shape.innerRadius = 25 * value;
       }
     }
+  }
+
+  generateStarPoints(shape: StarShape): string {
+    const { x, y, points, outerRadius, innerRadius } = shape;
+    const step = Math.PI / points;
+    const coords: string[] = [];
+
+    for (let i = 0; i < 2 * points; i++) {
+      const radius = i % 2 === 0 ? outerRadius : innerRadius;
+      const angle = i * step;
+      const px = x + radius * Math.cos(angle);
+      const py = y + radius * Math.sin(angle);
+      coords.push(`${px},${py}`);
+    }
+    return coords.join(' ');
   }
 
   getShapeById(id: string) {
