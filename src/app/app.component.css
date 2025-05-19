@@ -3,5 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
+  background: linear-gradient(35deg, #4b6cb7 0%, #182848 100%);
+  width: 100vw;
+  height: 100svh;
 }

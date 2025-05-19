@@ -1,4 +1,7 @@
 .canvas-board {
     border-radius: 15px;
     background-color: lightgray;
+    margin-top: 12px;
+    border: 4px solid black;
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
 }

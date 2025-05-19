@@ -1,5 +1,14 @@
-<div class="toolbar" *ngIf="selectedShape" [ngStyle]="{ top: this.mouseY + 'px', left: this.mouseX  + 'px' }">
-    <button (click)="onResize()">Resize</button>
-    <button (click)="onDelete()">Delete</button>
-    <button (click)="onMove()">Move</button>
+<div class="toolbar" *ngIf="selectedShape" [ngStyle]="{ top: this.mouseY + 20 + 'px', left: this.mouseX  + 'px' }">
+    <div style="display: flex; flex-direction: column; align-items: center; color: white;">
+        <span>{{this.value}}</span>
+        <mat-slider min="1" max="25" step="0.1"><input matSliderThumb color="white" [(ngModel)]="value"
+                (ngModelChange)="onResize()"></mat-slider>
+    </div>
+    <!-- <div style="display: flex; flex-direction: column; align-items: center; color: white;">
+        <span>{{this.value}}</span>
+        <mat-slider min="1" max="25" step="0.1"><input matSliderThumb color="white" [(ngModel)]="value"
+                (ngModelChange)="onResize()"></mat-slider>
+    </div> -->
+    <button class="custom-fab" mat-fab (click)="onMove()"><mat-icon>open_with</mat-icon></button>
+    <button class="custom-fab" mat-fab (click)="onDelete()"><mat-icon>delete</mat-icon></button>
 </div>

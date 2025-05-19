@@ -28,7 +28,7 @@ export class CanvasComponent {
     });
   }
 
-  onMouseMove(event: MouseEvent) {
+  onCanvasMouseMove(event: MouseEvent) {
     const svg = (event.target as SVGElement).closest('svg');
     if (!svg || !this.previewShape) return;
     const pt = svg.createSVGPoint();
@@ -60,15 +60,15 @@ export class CanvasComponent {
   onCanvasClick(event: MouseEvent) {
     if (!this.previewShape) return;
     const newShape = { ...this.previewShape };
-    this.onShapeClick(event, newShape);
     this.shapeService.addShape(newShape);
     this.previewShape = null;
     this.shapeService.addPreviewShape(null);
+    const shape = this.shapeService.getShapeById(newShape.id);
+    this.onShapeClick(event, shape!);
   }
 
   onShapeClick(event: MouseEvent, shape: Shape) {
     if (this.selectedShape?.id === shape.id) {
-
       this.selectedShape = null;
       return;
     }
@@ -84,9 +84,10 @@ export class CanvasComponent {
     this.selectedShape = null;
   }
 
-  onResizeShape() {
+  onResizeShape(value: number) {
     if (!this.selectedShape) return;
-    this.shapeService.resizeShape(this.selectedShape.id, 10, 5);
+    this.shapeService.resizeShape(this.selectedShape.id, value);
+
   }
 
   onMoveShape() {
@@ -97,7 +98,7 @@ export class CanvasComponent {
     this.selectedShape = null;
   }
 
-  generateStarPoints(shape: StarShape): string {
+  canvasGenerateStarPoints(shape: StarShape): string {
     const { x, y, points, outerRadius, innerRadius } = shape;
     const step = Math.PI / points;
     const coords: string[] = [];
