@@ -14,8 +14,8 @@ import { EditingToolbarComponent } from '../editing-toolbar/editing-toolbar.comp
 })
 export class CanvasComponent {
   previewShape: Shape | null = null;
-  shapes: Shape[] = [];
   selectedShape: Shape | null = null;
+  shapes: Shape[] = [];
   mouseX: number = 0;
   mouseY: number = 0;
   selectedShapeX: number = 0;
@@ -68,17 +68,21 @@ export class CanvasComponent {
   }
 
   onShapeClick(event: MouseEvent, shape: Shape) {
-    if (this.selectedShape?.id === shape.id) {
-      this.selectedShape.stroke = 'black';
-      this.selectedShape.strokeOpacity = 1;
-      this.selectedShape = null;
-      return;
+    if (this.selectedShape) {
+      if (this.selectedShape.id === shape.id) {
+        this.selectedShape.strokeOpacity = 1
+        this.selectedShape = null
+      } else {
+        this.selectedShape.strokeOpacity = 1
+        this.selectedShape = shape
+        this.selectedShape.strokeOpacity = 0.5
+      }
+    } else {
+      this.selectedShape = shape
+      this.selectedShape.strokeOpacity = 0.5
     }
-
     this.selectedShapeX = event.pageX;
     this.selectedShapeY = event.pageY;
-    this.selectedShape = shape;
-    this.selectedShape.strokeOpacity = 0.5;
   }
 
   onDeleteShape() {
