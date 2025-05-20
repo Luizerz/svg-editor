@@ -51,7 +51,7 @@ O projeto foi desenvolvido como solução para um desafio técnico, com foco em 
     - [x] Capacidade de deletar elementos do canvas.
     - [x] Capacidade de redimensionar elementos (mantendo suas propriedades configuráveis).
 - #### Gerenciamento de Estado:
-    - [ ] Persistência do estado da aplicação (elementos e suas configurações) usando localStorage ou sessionStorage, para que o desenho seja mantido ao recarregar a página: **Usei o localStorage**
+    - [x] Persistência do estado da aplicação (elementos e suas configurações) usando localStorage ou sessionStorage, para que o desenho seja mantido ao recarregar a página: **Usei o localStorage**
 - #### UX/UI Melhorada:
     - [x] Um painel de propriedades que aparece contextualmente ao selecionar um elemento.
     - [x] Feedback visual claro para seleção e interações.
@@ -60,7 +60,47 @@ O projeto foi desenvolvido como solução para um desafio técnico, com foco em 
     - [x] Testes unitários para componentes ou serviços críticos (ex: lógica de geração da estrela).
 
 ---
+## 💻 Observações e decisões técnicas.
 
+#### Árvore do projeto.
+
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── canvas/
+│   │   │   ├── canvas.component.css
+│   │   │   ├── canvas.component.html
+│   │   │   └── canvas.component.ts
+│   │   ├── editing-toolbar/
+│   │   │   ├── editing-toolbar.component.css
+│   │   │   ├── editing-toolbar.component.html
+│   │   │   └── editing-toolbar.component.ts
+│   │   └── toolbar/
+│   │   │   └── toolbar.component.css
+│   │   │   └── toolbar.component.html
+│   │   │   └── toolbar.component.ts
+│   ├── models/
+│   │   └── shape.model.ts
+│   ├── services/
+│   │   └── shape.service.ts
+│   ├── app.component.ts
+│   ├── app.component.html
+│   └── app.component.css
+├──index.html
+├──styles.css
+└── main.ts
+```
+
+#### Detalhes
+
+Pensei em uma estrutura em que teríamos o `Canvas`, para poder renderizar e pegar algumas ações do usuário, a `Toolbar`, para ter a opção de adicionar as formas (retângulos e estrelas), e a `EditingToolbar`, a qual é utilizada para fazer a edição na forma selecionada no canvas.
+
+Tanto o `Canvas` quanto a `Toolbar` compartilham da injeção do `ShapeService`. Dessa forma, facilitando o gerenciamento de estados dos shapes, pois na camada de serviço utilizo objetos observáveis com o `BehaviorSubject`.
+
+Por outro lado, tentei deixar o `EditingToolbar` o mais desacoplado possível, uma vez que ele poderia tranquilamente ser integrado em uma outra tela.
+
+---
 
 ## 🚀 Como executar
 
