@@ -6,6 +6,8 @@ Este projeto é um editor gráfico interativo baseado em SVG, desenvolvido com *
 
 O projeto foi desenvolvido como solução para um desafio técnico, com foco em boas práticas de engenharia de software, arquitetura em Angular e manipulação direta de SVG.
 
+[@Luiz Matheus Sena Macedo](https://www.linkedin.com/in/luiz-sena-ios/)
+
 ---
 
 ## 🎨 Funcionalidades
