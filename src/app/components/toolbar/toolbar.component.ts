@@ -10,10 +10,10 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule]
 })
 export class ToolbarComponent {
-  constructor(private shapes: ShapesService) { }
+  constructor(private shapesService: ShapesService) { }
 
   addRectangle() {
-    this.shapes.addPreviewShape(
+    this.shapesService.addPreviewShape(
       {
         id: '',
         type: 'rectangle',
@@ -31,7 +31,7 @@ export class ToolbarComponent {
   }
 
   addStar() {
-    this.shapes.addPreviewShape({
+    this.shapesService.addPreviewShape({
       id: '',
       type: 'star',
       x: 200,

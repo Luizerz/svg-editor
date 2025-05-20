@@ -99,7 +99,7 @@ export class CanvasComponent {
 
   onStarPointsChange(value: number) {
     if (!this.selectedShape) return;
-    this.shapeService.changeStarPoints(this.selectedShape.id, value )
+    this.shapeService.changeStarPoints(this.selectedShape.id, value)
   }
 
   onMoveShape() {

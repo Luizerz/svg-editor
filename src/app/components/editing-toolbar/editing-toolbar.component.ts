@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Shape } from '../../models/shape.model';
+import { ShapeType } from '../../models/shape.model';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
@@ -16,7 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class EditingToolbarComponent {
 
-  @Input() selectedShape: Shape | null = null;
+  @Input() shapeType: ShapeType | undefined = undefined;
+  @Input() shapeStarPoints: number | null = 5;
   @Input() mouseX: number = 0;
   @Input() mouseY: number = 0;
   @Output() resize = new EventEmitter<number>();
@@ -24,7 +25,7 @@ export class EditingToolbarComponent {
   @Output() move = new EventEmitter<void>();
   @Output() starPoints = new EventEmitter<number>();
   value = 1;
-  points = 3;
+
 
   onResize() {
     this.resize.emit(this.value);
@@ -37,15 +38,17 @@ export class EditingToolbarComponent {
   }
 
   onStarPointsDown() {
-    this.points -= 1
-    if (this.points <= 3) {
-      this.points = 3
-      this.starPoints.emit(this.points)
+    if (this.shapeStarPoints === null) return
+    this.shapeStarPoints -= 1
+    if (this.shapeStarPoints <= 3) {
+      this.shapeStarPoints = 3
+      this.starPoints.emit(this.shapeStarPoints)
     }
-    this.starPoints.emit(this.points)
+    this.starPoints.emit(this.shapeStarPoints)
   }
   onStarPointsRaise() {
-    this.points += 1
-    this.starPoints.emit(this.points)
+    if (this.shapeStarPoints === null) return
+    this.shapeStarPoints += 1
+    this.starPoints.emit(this.shapeStarPoints)
   }
 }

@@ -20,10 +20,10 @@
             [attr.stroke-opacity]="shape.strokeOpacity" [attr.stroke]="shape.stroke" stroke-dasharray="4"
             pointer-events="none" />
     </ng-container>
-
-
 </svg>
 
-<app-editing-toolbar [selectedShape]="this.selectedShape" [mouseX]="this.selectedShapeX" [mouseY]="selectedShapeY"
-    (move)="this.onMoveShape()" (resize)="this.onResizeShape($event)" (delete)="this.onDeleteShape() " (starPoints)="onStarPointsChange($event)">
+<app-editing-toolbar *ngIf="selectedShape"
+    [shapeStarPoints]="selectedShape.type === 'star' ? selectedShape.points : null" [shapeType]="selectedShape.type"
+    [mouseX]="selectedShapeX" [mouseY]="selectedShapeY" (move)="onMoveShape()" (resize)="onResizeShape($event)"
+    (delete)="onDeleteShape()" (starPoints)="onStarPointsChange($event)">
 </app-editing-toolbar>
