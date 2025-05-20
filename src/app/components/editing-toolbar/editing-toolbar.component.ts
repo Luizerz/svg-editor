@@ -21,6 +21,7 @@ export class EditingToolbarComponent {
   @Input() shapeFillColor: string = '';
   @Input() shapeStrokeColor: string = '';
   @Input() shapeStrokeWidth: number = 1;
+  @Input() shapeCornerRadius: number | null = 0;
   @Input() mouseX: number = 0;
   @Input() mouseY: number = 0;
   @Input() shapeSize: [width: number, height: number] = [100, 50];
@@ -31,6 +32,7 @@ export class EditingToolbarComponent {
   @Output() fill = new EventEmitter<string>();
   @Output() stroke = new EventEmitter<string>();
   @Output() strokeWidth = new EventEmitter<number>();
+  @Output() cornerRadius = new EventEmitter<number>();
 
 
   onResize() {
@@ -53,6 +55,11 @@ export class EditingToolbarComponent {
 
   onStrokeWidth() {
     this.strokeWidth.emit(this.shapeStrokeWidth)
+  }
+
+  onCornerRadius() {
+    if(!this.shapeCornerRadius) return;
+    this.cornerRadius.emit(this.shapeCornerRadius)
   }
 
   onStarPointsDown() {

@@ -20,6 +20,15 @@
                 <mat-label>
                     {{this.shapeType == 'star' ? "Raio Interno: " : "Largura: "}} {{this.shapeSize[0]}}
                 </mat-label>
+                
+            </mat-slider>
+        </div>
+        <div *ngIf="shapeType == 'rectangle'">
+            <mat-slider min="1" max="50" step="1" class="slider"><input matSliderThumb color="white"
+                    [(ngModel)]="shapeCornerRadius" (ngModelChange)="onCornerRadius()">
+                <mat-label>
+                    Corner: {{this.shapeCornerRadius}}
+                </mat-label>
             </mat-slider>
         </div>
     </div>

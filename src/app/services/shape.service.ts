@@ -68,6 +68,13 @@ export class ShapesService {
     }
   }
 
+  changeShapeCornerRadius(id: string, radius: number) {
+    const shape = this.getShapeById(id)
+    if(shape?.type == 'rectangle') {
+      shape.cornerRadius = radius
+    }
+  }
+
   changeStarPoints(id: string, value: number) {
     const shape = this.getShapeById(id)
     if (shape?.type == 'star') {

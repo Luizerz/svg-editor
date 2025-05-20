@@ -112,6 +112,11 @@ export class CanvasComponent {
     this.shapeService.changeShapeStrokeWidth(this.selectedShape.id, value)
   }
 
+  onCornerRadiusShape(value: number) {
+    if (!this.selectedShape) return;
+    this.shapeService.changeShapeCornerRadius(this.selectedShape.id, value)
+  }
+
   onStarPointsChange(value: number) {
     if (!this.selectedShape) return;
     this.shapeService.changeStarPoints(this.selectedShape.id, value)

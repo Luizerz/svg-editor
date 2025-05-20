@@ -42,9 +42,9 @@ O projeto foi desenvolvido como solução para um desafio técnico, com foco em 
 ### 💡 Funcionalidades opcionais implementadas  
 
 - #### Configurações Visuais Adicionais:
-    - [ ] Cor de preenchimento (fill) dos elementos.
-    - [ ] Cor da borda (stroke) dos elementos.
-    - [ ] Espessura da borda (stroke-width) dos elementos.
+    - [x] Cor de preenchimento (fill) dos elementos.
+    - [x] Cor da borda (stroke) dos elementos.
+    - [x] Espessura da borda (stroke-width) dos elementos.
 - #### Manipulação Avançada:
     - [x] Capacidade de selecionar elementos no canvas clicando neles.
     - [x] Capacidade de mover elementos selecionados no canvas.
