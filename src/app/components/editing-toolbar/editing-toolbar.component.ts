@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-editing-toolbar',
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatSliderModule, FormsModule, MatInputModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatSliderModule, FormsModule, MatInputModule, MatInputModule],
   templateUrl: './editing-toolbar.component.html',
   standalone: true,
   styleUrl: './editing-toolbar.component.css'

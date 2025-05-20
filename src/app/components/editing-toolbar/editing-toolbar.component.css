@@ -16,3 +16,24 @@
   width: 40px;
   height: 40px;
 }
+
+.color-container {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+}
+
+.color-container>div {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.color-container>div>span {
+  color: #fff;
+}
+.color-container>div>input {
+  cursor: pointer;
+  width: 100px;
+}
