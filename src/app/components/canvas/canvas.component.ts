@@ -70,16 +70,16 @@ export class CanvasComponent {
   onShapeClick(event: MouseEvent, shape: Shape) {
     if (this.selectedShape) {
       if (this.selectedShape.id === shape.id) {
-        this.selectedShape.strokeOpacity = 1
+        this.shapeService.changeShapeOpacity(this.selectedShape.id, 1);
         this.selectedShape = null
       } else {
-        this.selectedShape.strokeOpacity = 1
+        this.shapeService.changeShapeOpacity(this.selectedShape.id, 1);
         this.selectedShape = shape
-        this.selectedShape.strokeOpacity = 0.5
+        this.shapeService.changeShapeOpacity(this.selectedShape.id, 0.5);
       }
     } else {
       this.selectedShape = shape
-      this.selectedShape.strokeOpacity = 0.5
+      this.shapeService.changeShapeOpacity(this.selectedShape.id, 0.5);
     }
     this.selectedShapeX = event.pageX;
     this.selectedShapeY = event.pageY;

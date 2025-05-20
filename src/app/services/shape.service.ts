@@ -10,6 +10,17 @@ export class ShapesService {
   previewShapes$ = this.previewShapesSubject.asObservable();
   shapes$ = this.shapesSubject.asObservable();
 
+  constructor() {
+    const stored = localStorage.getItem('shapes');
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        this.shapesSubject.next(parsed)
+      } catch {
+        this.shapesSubject = new BehaviorSubject<Shape[]>([]);
+      }
+    }
+  }
 
   addPreviewShape(shape: Shape | null) {
     if (shape) {
@@ -22,15 +33,17 @@ export class ShapesService {
   addShape(shape: Shape) {
     const current = this.shapesSubject.value;
     this.shapesSubject.next([...current, { ...shape }]);
+    this.saveToLocalStorage();
   }
 
   getShapeById(id: string) {
     return this.shapesSubject.value.find(shape => shape.id === id);
   }
-   
+
   deleteShape(id: string) {
     const updatedShapes = this.shapesSubject.value.filter(shape => shape.id !== id);
     this.shapesSubject.next(updatedShapes);
+    this.saveToLocalStorage();
   }
 
   resizeShape(id: string, value: [width: number, height: number]) {
@@ -45,34 +58,39 @@ export class ShapesService {
         shape.innerRadius = value[1];
       }
     }
+    this.saveToLocalStorage();
   }
 
   changeShapeFillColor(id: string, color: string) {
-    const shape = this.getShapeById(id) 
-    if(shape) {
+    const shape = this.getShapeById(id)
+    if (shape) {
       shape.fill = color
     }
+    this.saveToLocalStorage();
   }
 
   changeShapeStrokeColor(id: string, color: string) {
-    const shape = this.getShapeById(id) 
-    if(shape) {
+    const shape = this.getShapeById(id)
+    if (shape) {
       shape.stroke = color
     }
+    this.saveToLocalStorage();
   }
 
   changeShapeStrokeWidth(id: string, width: number) {
     const shape = this.getShapeById(id)
-    if(shape) {
+    if (shape) {
       shape.strokeWidth = width
     }
+    this.saveToLocalStorage();
   }
 
   changeShapeCornerRadius(id: string, radius: number) {
     const shape = this.getShapeById(id)
-    if(shape?.type == 'rectangle') {
+    if (shape?.type == 'rectangle') {
       shape.cornerRadius = radius
     }
+    this.saveToLocalStorage();
   }
 
   changeStarPoints(id: string, value: number) {
@@ -80,6 +98,15 @@ export class ShapesService {
     if (shape?.type == 'star') {
       shape.points = value
     }
+    this.saveToLocalStorage();
+  }
+
+  changeShapeOpacity(id:string , value: number) {
+    const shape = this.getShapeById(id)
+    if(shape) {
+      shape.strokeOpacity = value
+    }
+    this.saveToLocalStorage();
   }
 
   generateStarPoints(shape: StarShape): string {
@@ -97,5 +124,8 @@ export class ShapesService {
     return coords.join(' ');
   }
 
- 
+  private saveToLocalStorage() {
+    localStorage.setItem('shapes', JSON.stringify(this.shapesSubject.value));
+  }
+
 }

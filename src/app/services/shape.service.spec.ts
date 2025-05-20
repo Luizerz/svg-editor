@@ -1,5 +1,5 @@
 import { ShapesService } from './shape.service';
-import { RectangleShape, StarShape } from '../models/shape.model';
+import { RectangleShape, Shape, StarShape } from '../models/shape.model';
 
 describe('ShapesService', () => {
   let service: ShapesService;
@@ -89,28 +89,28 @@ describe('ShapesService', () => {
   });
 
   it('should change fill color', () => {
-    const shape = { ...createBaseRect(), id: 'filltest' };
+    const shape: RectangleShape = { ...createBaseRect(), id: 'filltest' };
     service.addShape(shape);
     service.changeShapeFillColor('filltest', 'purple');
     expect(service.getShapeById('filltest')!.fill).toBe('purple');
   });
 
   it('should change stroke color', () => {
-    const shape = { ...createBaseRect(), id: 'stroketest' };
+    const shape: RectangleShape = { ...createBaseRect(), id: 'stroketest' };
     service.addShape(shape);
     service.changeShapeStrokeColor('stroketest', 'green');
     expect(service.getShapeById('stroketest')!.stroke).toBe('green');
   });
 
   it('should change stroke width', () => {
-    const shape = { ...createBaseRect(), id: 'widthtest' };
+    const shape: RectangleShape = { ...createBaseRect(), id: 'widthtest' };
     service.addShape(shape);
     service.changeShapeStrokeWidth('widthtest', 10);
     expect(service.getShapeById('widthtest')!.strokeWidth).toBe(10);
   });
 
   it('should change corner radius for rectangle', () => {
-    const shape = { ...createBaseRect(), id: 'corner' };
+    const shape: RectangleShape = { ...createBaseRect(), id: 'corner' };
     service.addShape(shape);
     service.changeShapeCornerRadius('corner', 15);
     expect((service.getShapeById('corner') as RectangleShape).cornerRadius).toBe(15);
@@ -135,6 +135,15 @@ describe('ShapesService', () => {
     expect((service.getShapeById('star1') as StarShape).points).toBe(8);
   });
 
+  it('should change shape stroke opacity', () => {
+    const shape: RectangleShape = { ...createBaseRect(), id: 'opacity-test'}
+    service.addShape(shape);
+    service.changeShapeOpacity('opacity-test', 0.5);
+
+    const updated = service.getShapeById('opacity-test');
+    expect(updated!.strokeOpacity).toBe(0.5);
+  });
+
   it('should generate correct star points string', () => {
     const shape: StarShape = {
       id: 's',
@@ -149,6 +158,7 @@ describe('ShapesService', () => {
     const parts = points.split(' ');
     expect(parts.length).toBe(10);
   });
+
 
   function createBaseRect(): RectangleShape {
     return {
