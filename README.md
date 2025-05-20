@@ -81,4 +81,7 @@ npm install
 
 # Rode a aplicação localmente
 npm start  
+
+# Teste unitarios podem ser executados pelo comando
+npm run test
 ```
