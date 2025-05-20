@@ -4,10 +4,10 @@
         <rect *ngIf="shape.type === 'rectangle'" [attr.x]="shape.x" [attr.y]="shape.y" [attr.width]="shape.width"
             [attr.height]="shape.height" [attr.rx]="shape.cornerRadius" [attr.fill]="shape.fill"
             [attr.stroke-opacity]="shape.strokeOpacity" [attr.stroke]="shape.stroke"
-            [attr.stroke-width]="shape.strokeWidth" (click)="onShapeClick($event,shape)" />
+            [attr.stroke-width]="shape.strokeWidth" (click)="onShapeClick(shape,$event)" />
         <polygon *ngIf="shape.type === 'star'" [attr.points]="canvasGenerateStarPoints(shape)" [attr.fill]="shape.fill"
             [attr.stroke-opacity]="shape.strokeOpacity" [attr.stroke]="shape.stroke"
-            [attr.stroke-width]="shape.strokeWidth" (click)="onShapeClick($event,shape)" />
+            [attr.stroke-width]="shape.strokeWidth" (click)="onShapeClick(shape,$event)" />
     </ng-container>
 
     <ng-container *ngIf="previewShape as shape">
@@ -29,5 +29,6 @@
     [shapeType]="selectedShape.type" [shapeStarPoints]="selectedShape.type === 'star' ? selectedShape.points : null"
     [shapeType]="selectedShape.type" [mouseX]="selectedShapeX" [mouseY]="selectedShapeY" (move)="onMoveShape()"
     (resize)="onResizeShape($event)" (delete)="onDeleteShape()" (starPoints)="onStarPointsChange($event)"
-    (fill)="onFillColorShape($event)" (stroke)="onStrokeColorShape($event)" (strokeWidth)="onStrokeWidthShape($event)" (cornerRadius)="onCornerRadiusShape($event)">
+    (fill)="onFillColorShape($event)" (stroke)="onStrokeColorShape($event)" (strokeWidth)="onStrokeWidthShape($event)"
+    (cornerRadius)="onCornerRadiusShape($event)" (check)="onEditingFinished()">
 </app-editing-toolbar>

@@ -1,5 +1,7 @@
 <div class="toolbar" [ngStyle]="{ top: this.mouseY + 20 + 'px', left: this.mouseX  + 'px' }">
     <div class="basic-tools-container">
+        <button mat-icon-button style="color: rgb(152, 255, 114);"
+            (click)="onCheck()"><mat-icon>check</mat-icon></button>
         <button mat-icon-button style="color: rgb(241, 241, 241);"
             (click)="onMove()"><mat-icon>open_with</mat-icon></button>
         <button mat-icon-button style="color: rgb(241, 241, 241);"

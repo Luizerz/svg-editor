@@ -64,10 +64,10 @@ export class CanvasComponent {
     this.previewShape = null;
     this.shapeService.addPreviewShape(null);
     const shape = this.shapeService.getShapeById(newShape.id);
-    this.onShapeClick(event, shape!);
+    this.onShapeClick(shape!, event);
   }
 
-  onShapeClick(event: MouseEvent, shape: Shape) {
+  onShapeClick(shape: Shape, event?: MouseEvent, ) {
     if (this.selectedShape) {
       if (this.selectedShape.id === shape.id) {
         this.shapeService.changeShapeOpacity(this.selectedShape.id, 1);
@@ -81,6 +81,7 @@ export class CanvasComponent {
       this.selectedShape = shape
       this.shapeService.changeShapeOpacity(this.selectedShape.id, 0.5);
     }
+    if (!event) return;
     this.selectedShapeX = event.pageX;
     this.selectedShapeY = event.pageY;
   }
@@ -89,6 +90,11 @@ export class CanvasComponent {
     if (!this.selectedShape) return;
     this.shapeService.deleteShape(this.selectedShape.id);
     this.selectedShape = null;
+  }
+
+  onEditingFinished() {
+    if (!this.selectedShape) return;
+    this.onShapeClick(this.selectedShape)
   }
 
   onResizeShape(value: [width: number, height: number]) {

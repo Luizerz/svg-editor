@@ -28,6 +28,7 @@ export class EditingToolbarComponent {
   @Output() resize = new EventEmitter<[width: number, height: number]>();
   @Output() delete = new EventEmitter<void>();
   @Output() move = new EventEmitter<void>();
+  @Output() check = new EventEmitter<void>();
   @Output() starPoints = new EventEmitter<number>();
   @Output() fill = new EventEmitter<string>();
   @Output() stroke = new EventEmitter<string>();
@@ -88,6 +89,9 @@ export class EditingToolbarComponent {
   onStrokeWidthRaise() {
     this.shapeStrokeWidth += 1
     this.strokeWidth.emit(this.shapeStrokeWidth)
+  }
+  onCheck() {
+    this.check.emit()
   }
 
 }

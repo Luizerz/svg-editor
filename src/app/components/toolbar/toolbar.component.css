@@ -6,6 +6,7 @@
   background-color: #f9f9f9;
   border-bottom: 1px solid #ddd;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+border-radius: 6px;
 }
 
 button {
@@ -29,7 +30,6 @@ button:active {
   background-color: #004a99;
 }
 
-/* Suporte a tema escuro */
 @media (prefers-color-scheme: dark) {
   .controls {
     background-color: #1e1e1e;
