@@ -2,7 +2,7 @@
 
 ## 🧩 Descrição
 
-Este projeto é um editor gráfico interativo baseado em SVG, desenvolvido com **Angular 19**. O objetivo é permitir que o usuário adicione, visualize, mova, redimensione, rotacione e exclua formas vetoriais (retângulos e estrelas) em um canvas SVG de forma intuitiva.
+Este projeto é um editor gráfico interativo baseado em SVG, desenvolvido com **Angular 19**. O objetivo é permitir que o usuário adicione, visualize, mova, redimensione e exclua formas vetoriais (retângulos e estrelas) em um canvas SVG de forma intuitiva.
 
 O projeto foi desenvolvido como solução para um desafio técnico, com foco em boas práticas de engenharia de software, arquitetura em Angular e manipulação direta de SVG.
 
@@ -27,7 +27,7 @@ O projeto foi desenvolvido como solução para um desafio técnico, com foco em 
     - [x] Novos elementos podem ser adicionados em uma posição padrão ou permitir que o usuário clique no canvas para definir a posição (opcional, mas desejável para boa UX).
 - #### Configuração do Retângulo
     - [x]  Ao adicionar ou selecionar um retângulo, o usuário deve poder configurar:
-        - [ ] Arredondamento dos Cantos: Um input numérico (ou slider) para definir o raio de arredondamento dos cantos do retângulo. 
+        - [x] Arredondamento dos Cantos: Um input numérico (ou slider) para definir o raio de arredondamento dos cantos do retângulo. 
     - [x] As alterações devem ser refletidas visualmente no elemento no canvas em tempo real.
 - #### Configuração da Estrela:
     - [x] Ao adicionar ou selecionar uma estrela, o usuário deve poder configurar:
@@ -57,7 +57,7 @@ O projeto foi desenvolvido como solução para um desafio técnico, com foco em 
     - [x] Feedback visual claro para seleção e interações.
     - [x] Design responsivo básico.
 - #### Testes:
-    - [ ] Testes unitários para componentes ou serviços críticos (ex: lógica de geração da estrela).
+    - [x] Testes unitários para componentes ou serviços críticos (ex: lógica de geração da estrela).
 
 ---
 
