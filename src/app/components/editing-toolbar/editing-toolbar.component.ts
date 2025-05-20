@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-editing-toolbar',
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatSliderModule, FormsModule, MatInputModule, MatInputModule],
+  imports: [CommonModule, MatIconModule, FormsModule, MatInputModule, MatSliderModule, MatButtonModule],
   templateUrl: './editing-toolbar.component.html',
   standalone: true,
   styleUrl: './editing-toolbar.component.css'
@@ -18,6 +18,9 @@ export class EditingToolbarComponent {
 
   @Input() shapeType: ShapeType | undefined = undefined;
   @Input() shapeStarPoints: number | null = 5;
+  @Input() shapeFillColor: string = '';
+  @Input() shapeStrokeColor: string = '';
+  @Input() shapeStrokeWidth: number = 1;
   @Input() mouseX: number = 0;
   @Input() mouseY: number = 0;
   @Input() shapeSize: [width: number, height: number] = [100, 50];
@@ -25,6 +28,9 @@ export class EditingToolbarComponent {
   @Output() delete = new EventEmitter<void>();
   @Output() move = new EventEmitter<void>();
   @Output() starPoints = new EventEmitter<number>();
+  @Output() fill = new EventEmitter<string>();
+  @Output() stroke = new EventEmitter<string>();
+  @Output() strokeWidth = new EventEmitter<number>();
 
 
   onResize() {
@@ -35,6 +41,18 @@ export class EditingToolbarComponent {
   }
   onMove() {
     this.move.emit();
+  }
+
+  onFill() {
+    this.fill.emit(this.shapeFillColor);
+  }
+
+  onStroke() {
+    this.stroke.emit(this.shapeStrokeColor);
+  }
+
+  onStrokeWidth() {
+    this.strokeWidth.emit(this.shapeStrokeWidth)
   }
 
   onStarPointsDown() {
@@ -51,4 +69,18 @@ export class EditingToolbarComponent {
     this.shapeStarPoints += 1
     this.starPoints.emit(this.shapeStarPoints)
   }
+
+  onStrokeWidthDown() {
+    this.shapeStrokeWidth -= 1;
+    if (this.shapeStrokeWidth < 1) {
+      this.shapeStrokeWidth = 1
+      this.strokeWidth.emit(this.shapeStrokeWidth)
+    }
+    this.strokeWidth.emit(this.shapeStrokeWidth)
+  }
+  onStrokeWidthRaise() {
+    this.shapeStrokeWidth += 1
+    this.strokeWidth.emit(this.shapeStrokeWidth)
+  }
+
 }

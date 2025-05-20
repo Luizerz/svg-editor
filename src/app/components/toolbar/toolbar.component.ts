@@ -22,8 +22,8 @@ export class ToolbarComponent {
         width: 100,
         height: 60,
         cornerRadius: 0,
-        fill: 'lightblue',
-        stroke: 'black',
+        fill: '#ffffff',
+        stroke: '#000000',
         strokeWidth: 2,
         strokeOpacity: 1,
       }
@@ -39,8 +39,8 @@ export class ToolbarComponent {
       points: 5,
       outerRadius: 50,
       innerRadius: 25,
-      fill: 'gold',
-      stroke: 'black',
+      fill: '#ffffff',
+      stroke: '#000000',
       strokeWidth: 2,
       strokeOpacity: 1,
     });

@@ -24,6 +24,15 @@ export class ShapesService {
     this.shapesSubject.next([...current, { ...shape }]);
   }
 
+  getShapeById(id: string) {
+    return this.shapesSubject.value.find(shape => shape.id === id);
+  }
+   
+  deleteShape(id: string) {
+    const updatedShapes = this.shapesSubject.value.filter(shape => shape.id !== id);
+    this.shapesSubject.next(updatedShapes);
+  }
+
   resizeShape(id: string, value: [width: number, height: number]) {
     const shape = this.getShapeById(id)
 
@@ -35,6 +44,27 @@ export class ShapesService {
         shape.outerRadius = value[0];
         shape.innerRadius = value[1];
       }
+    }
+  }
+
+  changeShapeFillColor(id: string, color: string) {
+    const shape = this.getShapeById(id) 
+    if(shape) {
+      shape.fill = color
+    }
+  }
+
+  changeShapeStrokeColor(id: string, color: string) {
+    const shape = this.getShapeById(id) 
+    if(shape) {
+      shape.stroke = color
+    }
+  }
+
+  changeShapeStrokeWidth(id: string, width: number) {
+    const shape = this.getShapeById(id)
+    if(shape) {
+      shape.strokeWidth = width
     }
   }
 
@@ -60,11 +90,5 @@ export class ShapesService {
     return coords.join(' ');
   }
 
-  getShapeById(id: string) {
-    return this.shapesSubject.value.find(shape => shape.id === id);
-  }
-  deleteShape(id: string) {
-    const updatedShapes = this.shapesSubject.value.filter(shape => shape.id !== id);
-    this.shapesSubject.next(updatedShapes);
-  }
+ 
 }

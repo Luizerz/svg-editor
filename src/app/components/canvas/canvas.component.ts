@@ -96,6 +96,22 @@ export class CanvasComponent {
     this.shapeService.resizeShape(this.selectedShape.id, value);
   }
 
+  onFillColorShape(value: string) {
+    if (!this.selectedShape) return;
+    this.shapeService.changeShapeFillColor(this.selectedShape.id, value)
+  }
+
+  onStrokeColorShape(value: string) {
+    if (!this.selectedShape) return;
+    console.log(value)
+    this.shapeService.changeShapeStrokeColor(this.selectedShape.id, value)
+  }
+
+  onStrokeWidthShape(value: number) {
+    if (!this.selectedShape) return;
+    this.shapeService.changeShapeStrokeWidth(this.selectedShape.id, value)
+  }
+
   onStarPointsChange(value: number) {
     if (!this.selectedShape) return;
     this.shapeService.changeStarPoints(this.selectedShape.id, value)

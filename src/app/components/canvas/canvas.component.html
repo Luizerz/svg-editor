@@ -22,9 +22,11 @@
     </ng-container>
 </svg>
 
-<app-editing-toolbar *ngIf="selectedShape"
+<app-editing-toolbar *ngIf="selectedShape" [shapeFillColor]="this.selectedShape.fill"
+    [shapeStrokeWidth]="this.selectedShape.strokeWidth" [shapeStrokeColor]="this.selectedShape.stroke"
     [shapeSize]="selectedShape.type === 'star' ? [selectedShape.outerRadius, selectedShape.innerRadius] : [selectedShape.width, selectedShape.height]"
     [shapeType]="selectedShape.type" [shapeStarPoints]="selectedShape.type === 'star' ? selectedShape.points : null"
     [shapeType]="selectedShape.type" [mouseX]="selectedShapeX" [mouseY]="selectedShapeY" (move)="onMoveShape()"
-    (resize)="onResizeShape($event)" (delete)="onDeleteShape()" (starPoints)="onStarPointsChange($event)">
+    (resize)="onResizeShape($event)" (delete)="onDeleteShape()" (starPoints)="onStarPointsChange($event)"
+    (fill)="onFillColorShape($event)" (stroke)="onStrokeColorShape($event)" (strokeWidth)="onStrokeWidthShape($event)">
 </app-editing-toolbar>
