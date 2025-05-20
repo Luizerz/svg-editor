@@ -24,23 +24,23 @@ export class ShapesService {
     this.shapesSubject.next([...current, { ...shape }]);
   }
 
-  resizeShape(id: string, value: number) {
+  resizeShape(id: string, value: [width: number, height: number]) {
     const shape = this.getShapeById(id)
 
     if (shape) {
       if (shape.type === 'rectangle') {
-        shape.width = 100 * value;
-        shape.height = 60 * value;
+        shape.width = value[0];
+        shape.height = value[1];
       } else {
-        shape.outerRadius = 50 * value;
-        shape.innerRadius = 35 * value;
+        shape.outerRadius = value[0];
+        shape.innerRadius = value[1];
       }
     }
   }
 
   changeStarPoints(id: string, value: number) {
     const shape = this.getShapeById(id)
-    if(shape?.type == 'star') {
+    if (shape?.type == 'star') {
       shape.points = value
     }
   }

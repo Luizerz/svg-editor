@@ -91,10 +91,9 @@ export class CanvasComponent {
     this.selectedShape = null;
   }
 
-  onResizeShape(value: number) {
+  onResizeShape(value: [width: number, height: number]) {
     if (!this.selectedShape) return;
     this.shapeService.resizeShape(this.selectedShape.id, value);
-
   }
 
   onStarPointsChange(value: number) {

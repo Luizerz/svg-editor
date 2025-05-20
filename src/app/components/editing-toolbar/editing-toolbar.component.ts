@@ -20,15 +20,15 @@ export class EditingToolbarComponent {
   @Input() shapeStarPoints: number | null = 5;
   @Input() mouseX: number = 0;
   @Input() mouseY: number = 0;
-  @Output() resize = new EventEmitter<number>();
+  @Input() shapeSize: [width: number, height: number] = [100, 50];
+  @Output() resize = new EventEmitter<[width: number, height: number]>();
   @Output() delete = new EventEmitter<void>();
   @Output() move = new EventEmitter<void>();
   @Output() starPoints = new EventEmitter<number>();
-  value = 1;
 
 
   onResize() {
-    this.resize.emit(this.value);
+    this.resize.emit([this.shapeSize[0], this.shapeSize[1]]);
   }
   onDelete() {
     this.delete.emit();

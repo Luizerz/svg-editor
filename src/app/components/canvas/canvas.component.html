@@ -23,7 +23,8 @@
 </svg>
 
 <app-editing-toolbar *ngIf="selectedShape"
-    [shapeStarPoints]="selectedShape.type === 'star' ? selectedShape.points : null" [shapeType]="selectedShape.type"
-    [mouseX]="selectedShapeX" [mouseY]="selectedShapeY" (move)="onMoveShape()" (resize)="onResizeShape($event)"
-    (delete)="onDeleteShape()" (starPoints)="onStarPointsChange($event)">
+    [shapeSize]="selectedShape.type === 'star' ? [selectedShape.outerRadius, selectedShape.innerRadius] : [selectedShape.width, selectedShape.height]"
+    [shapeType]="selectedShape.type" [shapeStarPoints]="selectedShape.type === 'star' ? selectedShape.points : null"
+    [shapeType]="selectedShape.type" [mouseX]="selectedShapeX" [mouseY]="selectedShapeY" (move)="onMoveShape()"
+    (resize)="onResizeShape($event)" (delete)="onDeleteShape()" (starPoints)="onStarPointsChange($event)">
 </app-editing-toolbar>
